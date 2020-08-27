@@ -8,12 +8,11 @@ import (
 	"os"
 )
 
-type Response struct { // テンプレート展開用のデータ構造
+type Response struct {
 	Ip string
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
-
 	page := Response{r.RemoteAddr}
 
 	res, err := json.Marshal(page)
