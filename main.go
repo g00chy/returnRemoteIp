@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 type Response struct {
@@ -13,7 +14,13 @@ type Response struct {
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
-	page := Response{r.RemoteAddr}
+	ips := strings.Split(r.Header.Get("X-FORWARDED-FOR"), ", ")
+	var page = Response{""}
+	if len(ips[0]) > 0 {
+		page = Response{ips[0]}
+	} else {
+		page = Response{r.RemoteAddr}
+	}
 
 	res, err := json.Marshal(page)
 	if err != nil {
