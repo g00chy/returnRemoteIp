@@ -1,3 +1,4 @@
 /returnRemoteIp.iml
 /.idea/
 *.exe
+.env
