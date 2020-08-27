@@ -28,7 +28,6 @@ func main() {
 	http.HandleFunc("/", viewHandler) // hello
 	envLoad()
 	_ = http.ListenAndServe(":"+os.Getenv("port"), nil)
-
 }
 
 func envLoad() {
